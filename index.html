@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Initial Project</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MAS 115</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Initial Task</a>
+</li>
+<li>
+  <a href="determinants.html">Determinants</a>
+</li>
+<li>
+  <a href="int_coordinates.html">Integer Coordinates</a>
+</li>
+<li>
+  <a href="areas.html">Areas with evenly spaced points</a>
+</li>
+<li>
+  <a href="level_sets.html">Level Sets</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Initial Project</h1>
+
+</div>
+
+
+<p>This can all be changed here( Following on from our findings in the Individual project when given the vertices of a simple polygon <span class="math inline">\((x_1, y_1),.,(x_n,y_n)\)</span>. The area <span class="math inline">\(A\)</span> of the simple polygon can be calculated as <span class="math display">\[A = \frac{1}{2} \sum\limits_{j=0}^n det \begin{pmatrix}x_{j} &amp; x_{j+1} \\ y_{j} &amp; y_{j+1}\end{pmatrix}\]</span>. With a new goal to further investigate, the areas of convex polygons and their behaviors, there were two initial tasks. Firstly, we had to construct a function in R that, given a collection of points in the plane and a convex polygon defined by its vertices, determines whether each point is inside or outside the polygon. Secondly, to write a function that extends from the idea above to obtain a Monte Carlo estimate for the area of a convex polygon and consider how good this approximation is. )</p>
+<p>I will explain what convex polygons are and what makes them unique. A convex polygon is a shape with all its interior angles being less than 180 degrees or <span class="math inline">\(\pi\)</span> in radians with no crossing of faces. We can see that all the vertices point in an outward direction away from the interior. The opposite to a convex polygon is a concave polygon. It only takes one interior angle greater than <span class="math inline">\(\pi\)</span> for the polygon to now be considered concave. Examples of convex polygons are the circular polygons which include irregular circular polygons as well as the entire range of regular <span class="math inline">\(n\)</span> sided polygons with <span class="math inline">\(n\)</span> greater than 2.</p>
+<p>Here are the functions for determining if points are in or out of a given polygon:</p>
+<pre class="r"><code>point_in_out &lt;- function(x_1, y_1, x, y, type, plot){
+  xo &lt;- x
+  yo &lt;- y
+  if(plot == 1){
+    plot(x,y,type = &quot;p&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;, xlim=c(min(x_1)-5, max(x_1)+5), #plots test coordinates if satisfied.
+         ylim=c(min(y_1)-5, max(y_1)+5), asp = 1, col = &quot;red&quot;)
+  }
+  l &lt;- length(x_1)#effectively retrieves the number of vertices.
+  gradient &lt;- 0 #initialise the variable gradient.
+  for(i in 1:l){ #removes all points that are above the line for the vterices that are within pi radians of the hroizontal anti clockwise.
+    if(i == l){
+      gradient &lt;- (y_1[1]-y_1[i])/(x_1[1]-x_1[i])
+    } else{
+      gradient &lt;- (y_1[i+1]-y_1[i])/(x_1[i+1]-x_1[i])#cycles through these vertices calculating gradient of each.
+    } 
+    c &lt;- y_1[i]- gradient*x_1[i] #find the interception with the y axis so we have the equation of a line.
+    if(l %% 2 == 0){
+      if(i &lt; floor((l/2)+1)){
+        test &lt;- ((y-gradient*x - c) &lt;= 0) #tests each test point for if it is below the line.
+      } else{
+        test &lt;- ((y-gradient*x - c) &gt;= 0) #tests each test point for if it is above the line.
+      }
+    }else {
+      if(i &lt;= floor((l/2)+1)){
+        test &lt;- ((y-gradient*x - c) &lt;= 0) #tests each test point for if it is below the line.
+      } else{
+        test &lt;- ((y-gradient*x - c) &gt;= 0) #tests each test point for if it is above the line.
+      }
+    }
+    for(i in 1:(length(x))){ #this then cycles through the x and coordinates and sets to point outside area to be removed.
+      if(test[i] == FALSE){
+        x[i] &lt;- floor(max(x_1)+500)
+        y[i] &lt;- floor(max(y_1) +500)
+      }
+    }
+  }
+  x2 &lt;- x[x!= floor(max(x_1)+500)]#removes point outside of area.
+  y2 &lt;- y[y!= floor(max(y_1)+500)]
+  area &lt;- 0
+  if(plot == 1){
+    points(x2,y2, asp = 1)#plots the test points 
+    polygon(x_1,y_1)#plots the polygon coordinates
+  }
+  if(type == &quot;GRID_1&quot;){ #depending on type of approximation used grid_1 is squared grid
+    area &lt;- (max(xo)-min(xo))*(max(yo)-min(yo))*length(x2)/grid_generator(interval, x_1, y_1)[[3]]
+  }
+  if(type == &quot;GRID_2&quot;){#grid_2 is triangular grid
+    area &lt;- ((max(xo)-(min(xo)))*((max(yo))-(min(yo)))*length(x2)/grid_generator2(interval, x_1, y_1)[[3]])
+  }
+  if(type == &quot;Monte&quot;){#If monte carlo method
+    area &lt;- (((ceiling(max(x_1))+5)-(floor(min(x_1))-5))*((ceiling(max(y_1))+5)-(floor(min(y_1))-5)))* length(x2)/no.points
+  }
+  if(type == &quot;Monte2&quot;){#If monte carlo method
+    area &lt;- ((radius+5)-(-radius-5))*((radius+5)-(-radius -5))*length(x2)/no.points
+  }
+  return(area)
+}</code></pre>
+<p>Looking at the above code we first outlined the function <span class="math inline">\(point\)</span>_ <span class="math inline">\(in\)</span>_ <span class="math inline">\(out\)</span>, which takes in 6 variables/ parameter. <span class="math inline">\(x\)</span>_ <span class="math inline">\(1\)</span> and <span class="math inline">\(y\)</span>_ <span class="math inline">\(1\)</span> are the vectors which contain the coordinates of the polygon vertices and are linked through there indexing to generate the coordinates in anti-clockwise order. <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are the vectors which contain the coordinates of the test points which are in the same plane as the polygon. Likewise with the vertices vectors, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are also linked by indexing to represent coordinates. <span class="math inline">\(type\)</span> and <span class="math inline">\(plot\)</span> are slightly different as these are more parameters used for conditioning later in the function. The parameter <span class="math inline">\(type\)</span> refers to the type of test points being used to approximate the area. In this instance, <span class="math inline">\(type\)</span> can be set to account for a simple square grid, triangular grid or Monte Carlo approach but more on that later.</p>
+<p>Following this, a quick conditional statement is implemented to check if <span class="math inline">\(plot = 1\)</span>. If this is satisfied then the test coordinates <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are plotted against each other in red. We then define two variables, <span class="math inline">\(l\)</span> which is the length of <span class="math inline">\(x\)</span>_ <span class="math inline">\(1\)</span>, this essentially returns the number of vertices that the polygon has. The <span class="math inline">\(gradient\)</span> variable is initialized to zero for the next stage.</p>
+<p>For the iteration part of the function the loop is cycled from one to <span class="math inline">\(l\)</span>, allowing us to cycle through all the values in <span class="math inline">\(x\)</span>_ <span class="math inline">\(1\)</span> and <span class="math inline">\(y\)</span>_ <span class="math inline">\(1\)</span>. Because the coordinates of the vertices are known, the simple equation of a straight line <span class="math inline">\(y = mx +c\)</span> can be used (where <span class="math inline">\(m\)</span> is the gradient and <span class="math inline">\(c\)</span> is the y intercept to find the equation of the line between each consecutive vertex). This is achieved by calculating the gradient with <span class="math inline">\(m = \frac{y_{i+1}-y_i}{x_{i+1}-x_i}\)</span>; <span class="math inline">\(i\)</span> is the indexed numbered vertices being cycled through. Once this is known, the y intercept - denoted as <span class="math inline">\(c\)</span> - can be easily rearranged and calculated. In the code, another conditional statement is used to check if the counter <span class="math inline">\(i\)</span> is equal to <span class="math inline">\(l\)</span> the number of coordinates. If it does then we know that we are back to the beginning of the cycle of polygon coordinates, so need to use the first coordinate again.</p>
+<p>Now that we have the general equation on the line through two consecutive vertices, we can start to test whether the test points are in or out of the polygon. This posed a challenge, as sometimes we will be required to remove the points above the line and other times will be required to remove points below. We wanted to make this as systematic as possible so that the user does not have to worry about whether they chose a polygon with even or odd number of vertices. A conditional statement testing if the number of vertices is divisible by two has also been put in. If so, the code moves on to another conditional statement checking if the counter <span class="math inline">\(i\)</span> is strictly less than the <span class="math inline">\(floor(\frac{l}{2}+1)\)</span>. This effectively tests whether the vertices are above the horizontal, meaning we need to remove the points above the lines.</p>
+<p>A vector test is then created which contains Boolean responses to whether each point from the test set is below the line. This is achieved by substitututing in the test point coordinates to the simple equation of a straight line rearranged to check if the value is less than or equal to zero: $ y-gradient*x - c 0$. If the first condition regarding the counter <span class="math inline">\(i\)</span> is not satisfied then the else statement dictates that <span class="math inline">\(test\)</span> should be the Boolean for points above the line, i.e. the vertices are now below the horizontal.</p>
+<p>Moving forwards, if the number of vertices is not even then the conditional stamen used is the same as before however with no strict inequality for the counter <span class="math inline">\(i \leq floor((l/2)+1))\)</span>. This non-strict in equality is very important as it allows an extra line to be included when considering points to remove above the line. In addition, you can see the layout to the content if satisfied is similar to the above conditionals.</p>
+<p>Now that we have the <span class="math inline">\(test\)</span> vector of Boolean responses we use another iteration loop to find the indexing of all the <span class="math inline">\(FALSE\)</span> values in the vector and then manipulate both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values which correspond to this indexing to an extreme value far outside of the polygons area. <span class="math inline">\(floor(max(x_1)+500)\)</span> is extreme enough as it takes in to account the size of the polygons max <span class="math inline">\(x\)</span> coordinate.</p>
+<p>Because this is all contained within the iteration loop defined earlier, all the points will be tested the same number of times as the number of vertices the polygon has. Each iteration will refine the list of coordinates, which are within the polygon until finally we have <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> being all the coordinates in the polygon with all the points that were out equal to <span class="math inline">\(floor(max(x_1)+500)\)</span> and <span class="math inline">\(floor(max(y_1)+500)\)</span> respectively. Making use of a method of removing values from a vector based upon a specific value, we define <span class="math inline">\(x2\)</span> and <span class="math inline">\(y2\)</span> as new vectors which only contain the points which are in the polygon.</p>
+<p>At the end of the function, housekeeping is done, which relates to plotting and find the area of the poly gone. If, as we stated at the beginning of the function and <span class="math inline">\(plot = 1\)</span> then on top of the already plotted points in red we plot directly on top the values for <span class="math inline">\(x2\)</span> and <span class="math inline">\(y2\)</span> in black to represent the points in the polygon as well as plotting the polygon using the polygon function.</p>
+<p>I will come back on to the area section of this function later once I have described the other functions.</p>
+<pre class="r"><code>#Area calculated from the determinant
+area_calculator &lt;- function(x,y){ #function takes in two vectors for x,y parts of coordinates
+  l &lt;- length(x) #find number of coordinates
+  m &lt;- matrix(c(x,y), ncol = 2, nrow = l) # creates a matric with column 1 as x and 2 as y
+  det &lt;- 0 #initialize det
+  area &lt;- 0 #initialize det
+  for(i in 1:l){ #iteration loop to cycle through the matrix calculating the determinant of the 2 by 2 matrices within.
+    if(i == l){
+      det &lt;- det(t(matrix(c(m[i,],m[1,]), nrow = 2, ncol = 2)))
+    }
+    else {
+      det &lt;- det(t(matrix(c(m[i,],m[i+1,]), nrow = 2, ncol = 2)))
+    }
+    area &lt;- area + det
+  }
+  area &lt;- 0.5 *area
+  return(area)
+}</code></pre>
+<p>For my function to determine the area of a polygon we used the equation below as a guide. <span class="math display">\[A = \frac{1}{2} \sum\limits_{j=0}^n det \begin{pmatrix}x_{j} &amp; x_{j+1} \\ y_{j} &amp; y_{j+1}\end{pmatrix}\]</span>. We called our function name to <span class="math inline">\(area_calculator\)</span>. This function takes in two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> each of equal length. The <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> vectors contain numeric values to represent the coordinates of the vertices in the polygon. For this to work the points must be entered in anti-clockwise order, going around the polygon. We then specify variables <span class="math inline">\(l, m, det\)</span> and <span class="math inline">\(area\)</span> with <span class="math inline">\(l\)</span> being the number of vertices, calculated by length of <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span>. <span class="math inline">\(m\)</span> creates a matrix of the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> elements.</p>
+<p>Through content in MAS111 we know that to calculate the determinate of a matrix, the matrix must first be a square matrix. Knowing this we created new two by two matrices, which we could then calculate the determinant. Using the counter <span class="math inline">\(i\)</span> in a for loop we were able to retrieve two adjacent rows with <span class="math inline">\(m[i,]\)</span> and <span class="math inline">\(m[i+1,]\)</span> and create new 2 by 2 matrices of them, we realized we needed to transpose them so used the <span class="math inline">\(t\)</span> function to do so. We then calculate the determinant of this 2 by 2 matrix and assign it to variable <span class="math inline">\(det\)</span>. This is then added to <span class="math inline">\(area\)</span> and the next line of the matrix <span class="math inline">\(m\)</span> is used to calculate the next 2 by 2 matrices to find the determinant of.</p>
+<p>We realized that when the counter gets to the last line of the matrix <span class="math inline">\(m\)</span> it will need to use the first line again, so we inserted an if statement around the calculation of the determinant to check for <span class="math inline">\(i\)</span> equaling <span class="math inline">\(l\)</span>. If this condition is satisfied then as you would expect the last line of matrix <span class="math inline">\(m[l,]\)</span> and the first <span class="math inline">\(m[1,]\)</span> are used. Finally, to find the whole area we multiply the sum of these by 0.5 as per the equation.</p>
+<pre class="r"><code>#Basic test with manually entered coordinates for polygon vertices with a known area.
+x_1 &lt;- c(25, 16, 4, 0, 4, 16) #x coordinates for vertices
+y_1 &lt;- c(6, 18, 18, 12,0, 0) #y coordinates for vertices
+test.points.x &lt;- 0:20 #test points that may be in the polygon or out.
+test.points.y &lt;- 0:20 #test points that may be in the polygon or out.
+point_in_out(x_1,y_1,test.points.x,test.points.y,type = 0, plot = 1) #recalls the point_in_out function I defined earlier.</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre><code>## [1] 0</code></pre>
+<p>As you can see from the image created above with manually entered coordinates for the vertices and test points we can clearly see that the function works as all the points that are within the polygon are coloured black and all that are outside are coloured red. The value of zero generated is in response to an approximation for area, which is controlled by the <span class="math inline">\(type\)</span> parameter. When <span class="math inline">\(type\)</span> is anything other than the specific entries required it returns a zero value.</p>
+<p>For the second part of the initial tasks, we were asked to calculate the area of a given convex polygon using the Monte Carlo method. The Monte Carlo method is a way of calculating the area of a shape by generating <span class="math inline">\(n\)</span> random points and then testing which points lie within the shape you’re trying to find the area of. The approximate area is given by the area of the shape the points are generated in <span class="math inline">\((m)\)</span>, the number of points in the shape <span class="math inline">\((k)\)</span>, the number of points generated<span class="math inline">\((n)\)</span>, <span class="math inline">\(\frac{mk}{n}\)</span>. Obviously, the approximation becomes closer and closer to the actual area of the shape as <span class="math inline">\(n\)</span> approaches infinity. Which is why this is only an approximation as infinity is not a finite number of points that can be generated.</p>
+<pre class="r"><code>x_1 &lt;- c(25, 16, 4, 0, 4, 16) #x coordinates for vertices
+y_1 &lt;- c(6, 18, 18, 12,0, 0) #y coordinates for vertices
+no.points &lt;- 10000 #number of test points to generate  and determine if in or outside the polygon.
+areas &lt;- 0
+repetitions &lt;- 15
+for(i in 1:repetitions){# retpeats monte carlo method 10 times and finds an average for the approximate area
+  monte.carlo.points.x &lt;- runif(no.points,floor(min(x_1)-5), ceiling(max(x_1)+5)) #generates random points over polygon dimensions.
+  monte.carlo.points.y &lt;- runif(no.points,floor(min(y_1)-5), ceiling(max(y_1)+5))
+  areas &lt;- c(areas, point_in_out(x_1,y_1,monte.carlo.points.x,monte.carlo.points.y, &quot;Monte&quot;, plot = 0)) #monte carlo proccess
+  
+}
+point_in_out(x_1,y_1,monte.carlo.points.x,monte.carlo.points.y, &quot;Monte&quot;, plot = 1) #monte carlo proccess</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre><code>## [1] 326.536</code></pre>
+<p>To do this we used the same bit of code as before but use different test points. We first start by defining the polygon vertices like before, as well as defining variables like <span class="math inline">\(no.points\)</span> as the number of points to randomly generate in the plane. Because the points in the Monte Carlo method are randomly generated we decided that it was more accurate to repeat the method a number of times and then find the average of all the different areas calculated, which lead us to define the variables <span class="math inline">\(areas\)</span> and <span class="math inline">\(repetition\)</span>. Using iteration from one to <span class="math inline">\(repetition\)</span> we generated vectors <span class="math inline">\(monte.carlo.points.x\)</span> and <span class="math inline">\(monte.carlo.points.y\)</span> using the <span class="math inline">\(runif()\)</span> function for each to generate <span class="math inline">\(no.points\)</span> random numbers in the interval defined by the maximum and minimum of the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates of the polygon. These points are then used for the test values in the <span class="math inline">\(point\)</span>_ <span class="math inline">\(in\)</span>_ <span class="math inline">\(out\)</span> function and the output area is then appended to the end of the <span class="math inline">\(areas\)</span> vector. The outputted area of this function is determined depending on what we put for the <span class="math inline">\(type\)</span> parameter. For the Monte Carlo method we set <span class="math inline">\(type = &quot;Monte&quot;\)</span>. In the <span class="math inline">\(point\)</span>_ <span class="math inline">\(in\)</span>_ <span class="math inline">\(out\)</span> function this is picked up on and the area is calculated using the “Monte” method, defined in the function.</p>
+<pre class="r"><code>mean(areas[-1])</code></pre>
+<pre><code>## [1] 334.0232</code></pre>
+<pre class="r"><code>area_calculator(x_1,y_1) #calculates area using determinant process.</code></pre>
+<pre><code>## [1] 333</code></pre>
+<p>As you can see when comparing the mean area calculated using Monte Carlo method and the actual area calculated using the determinant process from before that the difference between the two are extremely small. We believe that this approximation area could be improved if we increased the number of test points and if we increase the number of repetitions used to calculate the mean area.</p>
+<pre class="r"><code>var(areas[-1])</code></pre>
+<pre><code>## [1] 14.51411</code></pre>
+<pre class="r"><code>sd(areas[-1])</code></pre>
+<pre><code>## [1] 3.809739</code></pre>
+<p>A nice extra we have included is the variance and standard deviation of the areas calculated in the repetition process which shows approximately how close from the mean on average the areas calculated using the Monte Carlo were with these parameters. If we change the mean here to the actual area of the shape and not the mean approximate area, we can calculate the standard deviation to be <span class="math inline">\(\sigma^2 = \frac{\sum_{i=1}^{n}(x_i - \mu)^2}{n}\)</span>. Where <span class="math inline">\(\mu\)</span> is the actual area of the polygon and <span class="math inline">\(n\)</span> is <span class="math inline">\(repetitions\)</span>.</p>
+<pre class="r"><code>sqrt(sum((areas[-1]-area_calculator(x_1,y_1))^2)/repetitions)</code></pre>
+<pre><code>## [1] 3.820137</code></pre>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
