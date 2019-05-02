@@ -179,7 +179,9 @@ area_calculator(x_1,y_1) #calculates area using determinant process.
 ```
 
 As you can see when comparing the mean area calculated using Monte Carlo method and the actual area calculated using the determinant process from before that the difference between the two are extremely small. We believe that this approximation area could be improved if we increased the number of test points and if we increase the number of repetitions used to calculate the mean area.
+
 ##function 6
+
 ```{r}
 var(areas[-1])
 sd(areas[-1])

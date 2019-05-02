@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2120417193",
+    "hash" : "332359402",
     "id" : "1DB2E529",
-    "lastKnownWriteTime" : 1556740085,
-    "last_content_update" : 1556740085,
+    "lastKnownWriteTime" : 1556829611,
+    "last_content_update" : 1556829611404,
     "path" : "~/GitHub/Group_Project_2/areas.Rmd",
     "project_path" : "areas.Rmd",
     "properties" : {
+        "cursorPosition" : "284,0",
+        "scrollLine" : "276"
     },
     "relative_order" : 1,
     "source_on_save" : false,

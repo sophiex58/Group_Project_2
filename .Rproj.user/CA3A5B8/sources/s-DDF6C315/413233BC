@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "919569657",
+    "hash" : "1373317803",
     "id" : "413233BC",
-    "lastKnownWriteTime" : 1556739836,
-    "last_content_update" : 1556739836,
+    "lastKnownWriteTime" : 1556829606,
+    "last_content_update" : 1556829606316,
     "path" : "~/GitHub/Group_Project_2/_site.yml",
     "project_path" : "_site.yml",
     "properties" : {
+        "cursorPosition" : "17,13",
+        "scrollLine" : "0"
     },
     "relative_order" : 3,
     "source_on_save" : false,

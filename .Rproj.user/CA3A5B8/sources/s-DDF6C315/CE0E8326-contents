@@ -1,0 +1,107 @@
+---
+title: "MAS115: Semester 2 Mini-project"
+author: "180214185"
+date: "21 March 2019"
+output: pdf_document
+---
+\section {The Basic Task}
+To calculate the signed area of a polygon we use the equation below: $$A = \frac{1}{2}\sum_{j=1}^{n}det\quad\begin{pmatrix} x_j & x_{j+1} \\y_i & y_{j+1} \end{pmatrix}$$
+
+Where each $(x_j, y_j)$ represents a coordinate pair. This equation can be simplified using determinant calculations to:
+$$A = \frac{1}{2}\sum_{j=1}^{n}(x_j y_{j+1}-x_{j+1} y_j)$$
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+\section {Polygon Coordinates}
+Below I have listed some sample coordinates for some polygons.
+```{r}
+a = c(4,5,6,7,4)
+b = c(0,10,28,15,0)#weird shape
+
+c = c(1,3,5,1)
+d=c(5,8,5,5) #triangle
+
+e = c(1,2,4,5,4,2)
+f=c(2,3,3,2,1,1)#hexagon
+
+
+g = c(8,10,12,10,8,6)
+h = c(6,6,8,10,10,8)#irregular hexagon
+
+plot(c(0,20), c(0,10), type='n',xlab="x",ylab="y",main="Sample Polygons")
+polygon(c,d,col="red")
+polygon(e,f,col="pink")
+polygon(g,h,col="purple")
+
+plot(c(0,20), c(0,28), type='n', xlab="x",ylab="y")
+polygon(a,b,col="orange")
+```
+
+Calculating the area of the 'weird shape' polygon (coordinates above) manually gives:
+$$|  \frac{1}{2}((4 \times 10-0\times5)+(5\times28-6\times10)+(6\times15-7\times28)+(7\times0-4\times15)|  $$
+which simplifies to:
+| -23| \newline
+and so... Area = 23.
+
+
+\section {Code}
+My code has 4 arguments: x and y to input coordinates of polygon; 'graph' for the optional choice of a plot of the polygon; and 'colour' to choose what colour polygon you want if you choose to have it plotted.
+```{r}
+detvec <- c() #an empty vector to store sum calculations for every i 
+#so mistakes can be easily seen
+area <- function(x,y, graph=0, colour="orange") {
+  for(i in 1:(length(x)-1)){ #avoiding the last co-ordinate pair
+    det <- x[i]*y[i+1]-x[i+1]*y[i] #calculating the determinant
+    detvec <- append(detvec, det)
+  }
+  i <- length(x) #the final calculation with x[i+1]=x[1]
+  det <- x[i]*y[1]-x[1]*y[i]
+  detvec <- append(detvec, det)
+  
+  if(graph != 0){
+    x_range <- range(0, x)
+    y_range <- range(0, y)
+    plot(x_range, y_range, type='n')
+    polygon(x,y,col=colour)
+  }
+  
+  detvec
+  abs(sum(0.5*detvec))#Using 'abs' to return a positive number
+}
+area(a,b, 1)
+```
+As you can see, the graph has been plotted for 'weird shape' and the code above returns a value for it's area of 23; exactly the same as the manual calculation returned.
+
+\section {Extension}
+
+For any polygons with holes you simply use the function below
+```{r}
+holes <- function(x,y,s,t){
+  area <- area(x,y)-area(s,t)
+  area
+}
+
+```
+Where (s,t) represents the coordinates of the hole, visualising it as another polygon.
+A visual representation is below.
+```{r}
+k= c(0,6,6,0)
+l= c(3,3,9,9)
+
+plot(c(0,20), c(0,10), type='n',xlab="x",ylab="y",main="A polygon with a hole")
+polygon(k,l,col="blue")
+polygon(c,d,col="white") 
+
+holes(k,l,c,d)
+```
+So the area of the blue hole polygon is 30, easily checked by:
+```{r}
+area(k,l)
+area(c,d)
+area(k,l)-area(c,d)
+
+```
+as required.
+
+Further extension would have been on applying these calculations to 3D polygons (polyhedrons) but after extensive research it turns out it is not possible to calculate volume using the coordinates of its vertices alone.

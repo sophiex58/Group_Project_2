@@ -4,6 +4,8 @@ output: html_document
 ---
 We have previously discovered that the area of a parallelogram can be represented as the absolute value of a determinant. Here we will investigate further links between determinants and areas.
 
+<br><br>
+
 #Properties of Area
 
 1. It is non negative.
@@ -30,13 +32,15 @@ Property 4. follows from in one-dimension only lines can be formed which have no
 Take a parallelogram ($P$) with sides of **$a$** and **$b$** $P$(**$a$**,**$b$**) as shown in Figure 1. Let the area of the parallelogram be a function of **$a$** and **$b$**, area of $P$(**$a$**,**$b$**).
 
 
+<div class="clearfix">
+<div class="img-container"> ![Figure 2: $P$($n$**$a$**,**$b$**)](images/figure2.png)  </div>
+<div class="img-container"> ![Figure 3: $P$(**$a$**,$n$**$b$**)](images/figure3.png) </div>
 
-![Figure 2: $P$($n$**$a$**,**$b$**)](images/figure2.png)  ![Figure 3: $P$(**$a$**,$n$**$b$**)](images/figure3.png)
-
+</div>
 We can see that in Figures 2 and 3 when one of the sides is multiplied by a constant $n$ the parallelogram just gets $n$ amount of parallelograms attached on the end. So by the additvity property 2. the area of the parallelogram is just multiplied by $n$. Therefore, the area of $P$($n$**$a$**,**$b$**) = the area of $P$(**$a$**,$n$**$b$**) = $|n|$$P$(**$a$**,**$b$**), where $n$ is an constant. 
 This coincides with the property of determinants in which scaling a row or column of a matrix by a $n$ causes the determinant to be multiplied by $n$: $$\begin{vmatrix}a_1 + nb_1&b_1\\a_2 + nb_2&b_2\end{vmatrix} =  \begin{vmatrix}a_1&b_1\\a_2&b_2\end{vmatrix}.$$
 
-![Figure 4: $P$(**$a$**,**$b$**$+ k$**$a$**)](images/figure4.png)  ![Figure 5: $P$(**$a$**$+ k$**$b$**,**$b$**)](images/figure5.png)
+![Figure 4: $P$(**$a$**,**$b$**$+ k$**$a$**)](images/figure4.png)  
 
 ![Figure 5: $P$(**$a$**$+ k$**$b$**,**$b$**)](images/figure5.png)
 

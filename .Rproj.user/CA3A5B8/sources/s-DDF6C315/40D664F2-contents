@@ -1,0 +1,182 @@
+Further extension would have been on applying these calculations to 3D polygons (polyhedrons) but after extensive research it turns out it is not possible to calculate volume using just coordinates of verticies.
+However, the packages for this were downloaded by the time I realised this so have a 3D graph.
+
+```{r}
+library(rgl)
+x <- runif(100)
+y <- runif(100)
+z <- runif(100)
+plot3d(x,y,z, type="p", col="red", xlab="x", ylab="y", zlab="z", site=5, lwd=15)
+```
+
+
+pyramid.plot(lx,rx,labels=NA,top.labels=c("Male","Age","Female"),
+             main="",laxlab=NULL,raxlab=NULL,unit="%",lxcol,rxcol,gap=1,space=0.2,
+             ppmar=c(4,2,4,2),labelcex=1,add=FALSE,xlim,show.values=FALSE,ndig=1,
+             do.first=NULL)
+
+
+
+detvec <- c() #an empty vector to store sum calculations for every i so mistakes can be easily seen
+area <- function(x,y, graph=0, colour="orange") {
+  for(i in 1:(length(x)-1)){ #avoiding the last co-ordinate pair
+    det <- x[i]*y[i+1]-x[i+1]*y[i] #calculating the determinant
+    detvec <- append(detvec, det)
+  }
+  i <- length(x) #the final calculation with x[i+1]=x[1]
+  det <- x[i]*y[1]-x[1]*y[i]
+  detvec <- append(detvec, det)
+  
+  if(graph != 0){
+    x_range <- range(0, x)
+    y_range <- range(0, y)
+    plot(x_range, y_range, type='o')
+    polygon(x,y,col=colour)
+  }
+  
+  detvec
+  abs(sum(0.5*detvec))
+}
+area(a,b, 1, colour="orange")
+
+
+
+a = c(4,5,6,7,4)
+b = c(0,10,28,15,0) #weird shape
+detvec <- c()
+area <- function(x,y, a=1, c="orange") {
+  for(i in 1:(length(x)-1)){
+    det <- x[i]*y[i+1]-x[i+1]*y[i]
+    detvec <- append(detvec, det)
+  }
+  i <- length(x)
+  det <- x[i]*y[1]-x[1]*y[i]
+  detvec <- append(detvec, det)
+  detvec
+  
+  abs(sum(0.5*detvec))
+  if(a != 0){
+    x_range <- range(0, x)
+    y_range <- range(0, y)
+    plot(x_range, y_range, type='o')
+    polygon(x,y,col=c)
+  }
+  detvec
+  abs(sum(0.5*detvec))
+}
+area(a,b)
+
+
+
+
+
+
+
+polygn <- function(x,y,c) {
+  x_range = range(0, x)
+  y_range = range(0, y)
+  plot(x_range, y_range, type='o')
+  polygon(x,y,col=c)
+}
+polygn(a,b, "blue")
+c = c(1,3,5)
+d=c(1,4,1) #triangle
+
+polygon(c,d,col="red")
+polygon(e,f,col="pink")
+polygon(g,h,col="purple")
+
+s = c(0,5,5,0)
+t = c(0,5,0,5)
+
+plot(c(0,20), c(0,20), type='n')
+polygon(s,t,col="orange")
+polygon(c,d,col="red")
+polygon(e,f,col="pink")
+polygon(g,h,col="purple")
+
+
+
+a = c(4,5,6,7,4)
+b = c(0,10,28,15,0) #weird shape
+
+c = c(1,3,5)
+d=c(1,4,1) #triangle
+
+e = c(1,2,4,5,4,2)
+f=c(2,3,3,2,1,1)#hexagon
+
+
+g = c(8,10,12,10,8,6)
+h = c(6,6,8,10,10,8)#irregular heagon
+
+i = c(0,4,4,0)
+j = c(0,0,4,4)
+
+n <- length(x)
+detvec <- c()
+
+
+polygn <- function(x,y, z) {
+  x_range = range(0, x)
+  y_range = range(0, y)
+  plot(x_range, y_range, type='o')
+  polygon(x,y,col=z)
+}
+polygn(a,b, "red")
+
+
+
+polygn <- function(x,y,c) {
+  x_range = range(0, x)
+  y_range = range(0, y)
+  plot(x_range, y_range, type='o')
+  polygon(x,y,col=c)
+}
+polygn(a,b, "blue")
+polygn(c,d,"red")
+polygn(e,f,"pink")
+polygn(g,h,"purple")
+
+
+## Draw a polygon defining an area on the graph -- This is a red square
+x = c(1,2,4,5,4,2)
+y=c(2,3,3,2,1,1)#hexagon
+
+# When density=0, col refers to the line colour
+polygon(x,y, density=0, col="red")
+
+
+detvec <- c()
+
+area <- function(x,y) {
+  for(i in 1:(length(x)-1)){
+    det <- x[i]*y[i+1]-x[i+1]*y[i]
+    detvec <- append(detvec, det)
+  }
+  i <- n
+  det <- x[i]*y[1]-x[1]*y[i]
+  detvec <- append(detvec, det)
+  detvec
+  
+  abs(sum(0.5*detvec))
+  
+}
+
+
+
+# Draw a straight line using a set of (x,y) points
+x = c(1,2,3,4,5,6,7,8,9,10)
+y = c(1,2,3,4,5,6,7,8,9,10)
+x_range = range(0, x)
+y_range = range(0, y)
+
+
+plot(x, y, type="o", asp=1,xlim=x_range, ylim=y_range, 
+     xlab="This is X-value", ylab="This is Y-value", main="Line segments")
+
+## Draw a polygon filled with blue colour.
+xx = c(5,8,8,6.5,5)
+yy = c(0,0,0.5,0.8,0.5)
+# when density is not mentioned, col refers to filling colour.
+polygon(xx,yy,col="blue")
