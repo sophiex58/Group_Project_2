@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1556820503118.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3360575498",
+    "id" : "7DFF31CD",
+    "lastKnownWriteTime" : 1556822548,
+    "last_content_update" : 1556822548688,
+    "path" : "~/GitHub/Group_Project_2/Determinants.Rmd",
+    "project_path" : "Determinants.Rmd",
+    "properties" : {
+        "cursorPosition" : "43,0",
+        "scrollLine" : "35"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

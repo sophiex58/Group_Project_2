@@ -1,17 +1,17 @@
 ---
-title: "Initial Project"
+title: "initial_task_3"
+author: "Oliver Bradley"
+date: "27 April 2019"
+output: html_document
 ---
-
-##Introduction
-
+This can all be changed here(
 Following on from our findings in the Individual project when given the vertices of a simple polygon $(x_1, y_1),.,(x_n,y_n)$. The area $A$ of the simple polygon can be calculated as $$A = \frac{1}{2} \sum\limits_{j=0}^n det \begin{pmatrix}x_{j} & x_{j+1} \\ y_{j} & y_{j+1}\end{pmatrix}$$. With a new goal to further investigate, the areas of convex polygons and their behaviors, there were two initial tasks. Firstly, we had to construct a function in R that, given a collection of points in the plane and a convex polygon defined by its vertices, determines whether each point is inside or outside the polygon. Secondly, to write a function that extends from the idea above to obtain a Monte Carlo estimate for the area of a convex polygon and consider how good this approximation is.
+)
 
 
 I will explain what convex polygons are and what makes them unique. A convex polygon is a shape with all its interior angles being less than 180 degrees or $\pi$ in radians with no crossing of faces. We can see that all the vertices point in an outward direction away from the interior. The opposite to a convex polygon is a concave polygon. It only takes one interior angle greater than $\pi$ for the polygon to now be considered concave. Examples of convex polygons are the circular polygons which include irregular circular polygons as well as the entire range of regular $n$ sided polygons with $n$ greater than 2.
 
-##Here are the functions for determining if points are in or out of a given polygon:
-
-##function 1
+Here are the functions for determining if points are in or out of a given polygon:
 
 ```{r}
 point_in_out <- function(x_1, y_1, x, y, type, plot){
@@ -93,8 +93,6 @@ At the end of the function, housekeeping is done, which relates to plotting and 
 
 I will come back on to the area section of this function later once I have described the other functions.
 
-##function 2
-
 ```{r}
 #Area calculated from the determinant
 area_calculator <- function(x,y){ #function takes in two vectors for x,y parts of coordinates
@@ -116,13 +114,12 @@ area_calculator <- function(x,y){ #function takes in two vectors for x,y parts o
 }
 ```
 
-For the function to determine the area of a polygon we used the equation below as a guide.  $$A = \frac{1}{2} \sum\limits_{j=0}^n det \begin{pmatrix}x_{j} & x_{j+1} \\ y_{j} & y_{j+1}\end{pmatrix}$$. We called our function name to $area_calculator$. This function takes in two vectors $x$ and $y$ each of equal length. The $x$ and $y$ vectors contain numeric values to represent the coordinates of the vertices in the polygon. For this to work the points must be entered in anti-clockwise order, going around the polygon. We then specify variables $l, m, det$ and $area$ with $l$ being the number of vertices, calculated by length of $x$ or $y$. $m$ creates a matrix of the $x$ and $y$ elements.
+For my function to determine the area of a polygon we used the equation below as a guide.  $$A = \frac{1}{2} \sum\limits_{j=0}^n det \begin{pmatrix}x_{j} & x_{j+1} \\ y_{j} & y_{j+1}\end{pmatrix}$$. We called our function name to $area_calculator$. This function takes in two vectors $x$ and $y$ each of equal length. The $x$ and $y$ vectors contain numeric values to represent the coordinates of the vertices in the polygon. For this to work the points must be entered in anti-clockwise order, going around the polygon. We then specify variables $l, m, det$ and $area$ with $l$ being the number of vertices, calculated by length of $x$ or $y$. $m$ creates a matrix of the $x$ and $y$ elements.
 
 Through content in MAS111 we know that to calculate the determinate of a matrix, the matrix must first be a square matrix. Knowing this we created new two by two matrices, which we could then calculate the determinant. Using the counter $i$ in a for loop we were able to retrieve two adjacent rows with $m[i,]$ and $m[i+1,]$ and create new 2 by 2 matrices of them, we realized we needed to transpose them so used the $t$ function to do so. We then calculate the determinant of this 2 by 2 matrix and assign it to variable $det$. This is then added to $area$ and the next line of the matrix $m$ is used to calculate the next 2 by 2 matrices to find the determinant of.
 
 We realized that when the counter gets to the last line of the matrix $m$ it will need to use the first line again, so we inserted an if statement around the calculation of the determinant to check for $i$ equaling $l$. If this condition is satisfied then as you would expect the last line of matrix $m[l,]$ and the first $m[1,]$ are used. Finally, to find the whole area we multiply the sum of these by 0.5 as per the equation.
 
-##function 3
 
 ```{r}
 #Basic test with manually entered coordinates for polygon vertices with a known area.
@@ -137,7 +134,6 @@ As you can see from the image created above with manually entered coordinates fo
 
 For the second part of the initial tasks, we were asked to calculate the area of a given convex polygon using the Monte Carlo method. The Monte Carlo method is a way of calculating the area of a shape by generating $n$ random points and then testing which points lie within the shape you're trying to find the area of. The approximate area is given by the area of the shape the points are generated in $(m)$, the number of points in the shape $(k)$, the number of points generated$(n)$, $\frac{mk}{n}$. Obviously, the approximation becomes closer and closer to the actual area of the shape as $n$ approaches infinity. Which is why this is only an approximation as infinity is not a finite number of points that can be generated.
 
-##function 4
 
 ```{r}
 x_1 <- c(25, 16, 4, 0, 4, 16) #x coordinates for vertices
@@ -156,22 +152,19 @@ point_in_out(x_1,y_1,monte.carlo.points.x,monte.carlo.points.y, "Monte", plot = 
 
 To do this we used the same bit of code as before but use different test points. We first start by defining the polygon vertices like before, as well as defining variables like $no.points$ as the number of points to randomly generate in the plane. Because the points in the Monte Carlo method are randomly generated we decided that it was more accurate to repeat the method a number of times and then find the average of all the different areas calculated, which lead us to define the variables $areas$ and $repetition$. Using iteration from one to $repetition$ we generated vectors $monte.carlo.points.x$ and $monte.carlo.points.y$ using the $runif()$ function for each to generate $no.points$ random numbers in the interval defined by the maximum and minimum of the $x$ and $y$ coordinates of the polygon. These points are then used for the test values in the $point$_ $in$_ $out$ function and the output area is then appended to the end of the $areas$ vector. The outputted area of this function is determined depending on what we put for the $type$ parameter. For the Monte Carlo method we set $type = "Monte"$. In the $point$_ $in$_ $out$ function this is picked up on and the area is calculated using the "Monte" method, defined in the function.
 
-##function 5
 ```{r}
 mean(areas[-1])
 area_calculator(x_1,y_1) #calculates area using determinant process.
 ```
 
 As you can see when comparing the mean area calculated using Monte Carlo method and the actual area calculated using the determinant process from before that the difference between the two are extremely small. We believe that this approximation area could be improved if we increased the number of test points and if we increase the number of repetitions used to calculate the mean area.
-##function 6
+
 ```{r}
 var(areas[-1])
 sd(areas[-1])
 ```
 
 A nice extra we have included is the variance and standard deviation of the areas calculated in the repetition process which shows approximately how close from the mean on average the areas calculated using the Monte Carlo were with these parameters. If we change the mean here to the actual area of the shape and not the mean approximate area, we can calculate the standard deviation to be $\sigma^2 = \frac{\sum_{i=1}^{n}(x_i - \mu)^2}{n}$. Where $\mu$ is the actual area of the polygon and $n$ is $repetitions$. 
-
-##function 7
 ```{r}
 sqrt(sum((areas[-1]-area_calculator(x_1,y_1))^2)/repetitions)
 ```
