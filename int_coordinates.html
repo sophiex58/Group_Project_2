@@ -489,8 +489,14 @@ point_in_out(x_1,y_1,grid_generator2(interval, x_1, y_1)[[1]],grid_generator2(in
 <pre><code>## [1] 237.7641</code></pre>
 <p>When comparing the data from both the square grid approximation and the triangular grid approximation, we found that both do approach the actual area of the polygon. However my hypothesis which stated that if the points are equally spread out in a grid format the approximate area calculated will be closer than the Monte Carlo method due to this even spaced properties. After rigorous of testing with increasing number of the points for both the square grid and triangular, we found that the Monte Carlo method provided the closest approximation to the actual area. This could be down to small errors in my code that we have not accounted for as we have used the same approach as the Monte Carlo for determining the approximate area.</p>
 <p>In the above examples of the code that generates the square and triangular grids we choose to use one thousand points so that you can clearly see the pattern which is generated. Further data with points greater than this is below however it is difficult to see the pattern with the number of points greater than one thousand.</p>
-<p>(images/triange_grid_data.png)</p>
-<p>(images/square_grid_data.png)</p>
+<div class="figure">
+<img src="images/triange_grid_data.png" />
+
+</div>
+<div class="figure">
+<img src="images/square_grid_data.png" />
+
+</div>
 <p>In the above tables are my findings you can see how the approximate area changes with more points in both the square grid and the triangle grid method. We used those specific number of points to test because they are all square number so will perfectly fit in a square or triangular format.</p>
 </div>
 </div>

@@ -2,12 +2,16 @@
 title: "Initial Project"
 ---
 
+#Part 1
+
 ##Introduction
 
 Following on from our findings in the Individual project when given the vertices of a simple polygon $(x_1, y_1),.,(x_n,y_n)$. The area $A$ of the simple polygon can be calculated as $$A = \frac{1}{2} \sum\limits_{j=0}^n det \begin{pmatrix}x_{j} & x_{j+1} \\ y_{j} & y_{j+1}\end{pmatrix}$$. With a new goal to further investigate, the areas of convex polygons and their behaviors, there were two initial tasks. Firstly, we had to construct a function in R that, given a collection of points in the plane and a convex polygon defined by its vertices, determines whether each point is inside or outside the polygon. Secondly, to write a function that extends from the idea above to obtain a Monte Carlo estimate for the area of a convex polygon and consider how good this approximation is.
 
 
 I will explain what convex polygons are and what makes them unique. A convex polygon is a shape with all its interior angles being less than 180 degrees or $\pi$ in radians with no crossing of faces. We can see that all the vertices point in an outward direction away from the interior. The opposite to a convex polygon is a concave polygon. It only takes one interior angle greater than $\pi$ for the polygon to now be considered concave. Examples of convex polygons are the circular polygons which include irregular circular polygons as well as the entire range of regular $n$ sided polygons with $n$ greater than 2.
+
+---
 
 ##Here are the functions for determining if points are in or out of a given polygon:
 
@@ -77,13 +81,17 @@ Looking at the above code we first outlined the function $point$_ $in$_ $out$, w
 
 Following this, a quick conditional statement is implemented to check if $plot = 1$. If this is satisfied then the test coordinates $x$ and $y$ are plotted against each other in red. We then define two variables, $l$ which is the length of $x$_ $1$, this essentially returns the number of vertices that the polygon has. The $gradient$ variable is initialized to zero for the next stage.
 
+---
+
 For the iteration part of the function the loop is cycled from one to $l$, allowing us to cycle through all the values in $x$_ $1$ and $y$_ $1$. Because the coordinates of the vertices are known, the simple equation of a straight line $y = mx +c$ can be used (where $m$ is the gradient and $c$ is the y intercept to find the equation of the line between each consecutive vertex). This is achieved by calculating the gradient with $m = \frac{y_{i+1}-y_i}{x_{i+1}-x_i}$; $i$ is the indexed numbered vertices being cycled through. Once this is known, the y intercept - denoted as $c$ - can be easily rearranged and calculated. In the code, another conditional statement is used to check if the counter $i$ is equal to $l$ the number of coordinates. If it does then we know that we are back to the beginning of the cycle of polygon coordinates, so need to use the first coordinate again.
 
 Now that we have the general equation on the line through two consecutive vertices, we can start to test whether the test points are in or out of the polygon. This posed a challenge, as sometimes we will be required to remove the points above the line and other times will be required to remove points below. We wanted to make this as systematic as possible so that the user does not have to worry about whether they chose a polygon with even or odd number of vertices. A conditional statement testing if the number of vertices is divisible by two has also been put in. If so, the code moves on to another conditional statement checking if the counter $i$ is strictly less than the $floor(\frac{l}{2}+1)$. This effectively tests whether the vertices are above the horizontal, meaning we need to remove the points above the lines. 
 
 A vector test is then created which contains Boolean responses to whether each point from the test set is below the line. This is achieved by substitututing in the test point coordinates to the simple equation of a straight line rearranged to check if the value is less than or equal to zero: $ y-gradient*x - c \leq 0$. If the first condition regarding the counter $i$ is not satisfied then the else statement dictates that $test$ should be the Boolean for points above the line, i.e. the vertices are now below the horizontal. 
 
-Moving forwards, if the number of vertices is not even then the conditional stamen used is the same as before however with no strict inequality for the counter $i \leq floor((l/2)+1))$. This non-strict in equality is very important as it allows an extra line to be included when considering points to remove above the line.  In addition, you can see the layout to the content if satisfied is similar to the above conditionals. 
+Moving forwards, if the number of vertices is not even then the conditional statement used is the same as before however with no strict inequality for the counter $i \leq floor((l/2)+1))$. This non-strict in equality is very important as it allows an extra line to be included when considering points to remove above the line.  In addition, you can see the layout to the content if satisfied is similar to the above conditionals. 
+
+---
 
 Now that we have the $test$ vector of Boolean responses we use another iteration loop to find the indexing of all the $FALSE$ values in the vector and then manipulate both $x$ and $y$ values which correspond to this indexing to an extreme value far outside of the polygons area. $floor(max(x_1)+500)$ is extreme enough as it takes in to account the size of the polygons max $x$ coordinate.
 
@@ -92,6 +100,8 @@ Because this is all contained within the iteration loop defined earlier, all the
 At the end of the function, housekeeping is done, which relates to plotting and find the area of the poly gone. If, as we stated at the beginning of the function and $plot = 1$ then on top of the already plotted points in red we plot directly on top the values for $x2$ and $y2$ in black to represent the points in the polygon as well as plotting the polygon using the polygon function.
 
 I will come back on to the area section of this function later once I have described the other functions.
+
+---
 
 ##function 2
 
@@ -122,6 +132,8 @@ Through content in MAS111 we know that to calculate the determinate of a matrix,
 
 We realized that when the counter gets to the last line of the matrix $m$ it will need to use the first line again, so we inserted an if statement around the calculation of the determinant to check for $i$ equaling $l$. If this condition is satisfied then as you would expect the last line of matrix $m[l,]$ and the first $m[1,]$ are used. Finally, to find the whole area we multiply the sum of these by 0.5 as per the equation.
 
+---
+
 ##function 3
 
 ```{r}
@@ -134,6 +146,10 @@ point_in_out(x_1,y_1,test.points.x,test.points.y,type = 0, plot = 1) #recalls th
 ```
 
 As you can see from the image created above with manually entered coordinates for the vertices and test points we can clearly see that the function works as all the points that are within the polygon are coloured black and all that are outside are coloured red. The value of zero generated is in response to an approximation for area, which is controlled by the $type$ parameter. When $type$ is anything other than the specific entries required it returns a zero value. 
+
+---
+
+#Part 2
 
 For the second part of the initial tasks, we were asked to calculate the area of a given convex polygon using the Monte Carlo method. The Monte Carlo method is a way of calculating the area of a shape by generating $n$ random points and then testing which points lie within the shape you're trying to find the area of. The approximate area is given by the area of the shape the points are generated in $(m)$, the number of points in the shape $(k)$, the number of points generated$(n)$, $\frac{mk}{n}$. Obviously, the approximation becomes closer and closer to the actual area of the shape as $n$ approaches infinity. Which is why this is only an approximation as infinity is not a finite number of points that can be generated.
 
