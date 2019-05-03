@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1556903489509.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1588019422",
+    "id" : "8401D0A4",
+    "lastKnownWriteTime" : 1556923603,
+    "last_content_update" : 1556923603647,
+    "path" : "~/GitHub/Group_Project_2/level_sets.Rmd",
+    "project_path" : "level_sets.Rmd",
+    "properties" : {
+        "cursorPosition" : "12,65",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

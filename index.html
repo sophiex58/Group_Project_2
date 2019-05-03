@@ -317,35 +317,24 @@ $(document).ready(function () {
 
 <div id="TOC">
 <ul>
-<li><a href="#part-1">Part 1</a><ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#here-are-the-functions-for-determining-if-points-are-in-or-out-of-a-given-polygon">Here are the functions for determining if points are in or out of a given polygon:</a></li>
-<li><a href="#function-1">function 1</a></li>
-<li><a href="#function-2">function 2</a></li>
-<li><a href="#function-3">function 3</a></li>
-</ul></li>
-<li><a href="#part-2">Part 2</a><ul>
-<li><a href="#function-4">function 4</a></li>
-<li><a href="#function-5">function 5</a></li>
-<li><a href="#function-6">function 6</a></li>
-<li><a href="#function-7">function 7</a></li>
-</ul></li>
+<li><a href="#part-1">Part 1</a></li>
+<li><a href="#part-2">Part 2</a></li>
 </ul>
 </div>
 
 <div id="part-1" class="section level1">
 <h1>Part 1</h1>
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
-<p>Following on from our findings in the Individual project when given the vertices of a simple polygon <span class="math inline">\((x_1, y_1),.,(x_n,y_n)\)</span>. The area <span class="math inline">\(A\)</span> of the simple polygon can be calculated as <span class="math display">\[A = \frac{1}{2} \sum\limits_{j=0}^n det \begin{pmatrix}x_{j} &amp; x_{j+1} \\ y_{j} &amp; y_{j+1}\end{pmatrix}\]</span>. With a new goal to further investigate, the areas of convex polygons and their behaviors, there were two initial tasks. Firstly, we had to construct a function in R that, given a collection of points in the plane and a convex polygon defined by its vertices, determines whether each point is inside or outside the polygon. Secondly, to write a function that extends from the idea above to obtain a Monte Carlo estimate for the area of a convex polygon and consider how good this approximation is.</p>
-<p>I will explain what convex polygons are and what makes them unique. A convex polygon is a shape with all its interior angles being less than 180 degrees or <span class="math inline">\(\pi\)</span> in radians with no crossing of faces. We can see that all the vertices point in an outward direction away from the interior. The opposite to a convex polygon is a concave polygon. It only takes one interior angle greater than <span class="math inline">\(\pi\)</span> for the polygon to now be considered concave. Examples of convex polygons are the circular polygons which include irregular circular polygons as well as the entire range of regular <span class="math inline">\(n\)</span> sided polygons with <span class="math inline">\(n\)</span> greater than 2.</p>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>Following on from our findings in the Individual project when given the vertices of a simple polygon <span class="math inline">\((x_1, y_1),.,(x_n,y_n)\)</span>. The area <span class="math inline">\(A\)</span> of the simple polygon can be calculated as <span class="math display">\[A = \frac{1}{2} \sum\limits_{j=0}^n det \begin{pmatrix}x_{j} &amp; x_{j+1} \\ y_{j} &amp; y_{j+1}\end{pmatrix}\]</span> With a new goal to further investigate, the areas of convex polygons and their behaviors, there were two initial tasks. Firstly, we had to construct a function in R that, given a collection of points in the plane and a convex polygon defined by its vertices, determines whether each point is inside or outside the polygon. Secondly, to write a function that extends from the idea above to obtain a Monte Carlo estimate for the area of a convex polygon and consider how good this approximation is.</p>
+<p>We will explain what convex polygons are and what makes them unique. A convex polygon is a shape with all its interior angles being less than 180 degrees or <span class="math inline">\(\pi\)</span> in radians with no crossing of faces. We can see that all the vertices point in an outward direction away from the interior. The opposite to a convex polygon is a concave polygon. It only takes one interior angle greater than <span class="math inline">\(\pi\)</span> for the polygon to now be considered concave. Examples of convex polygons are the circular polygons which include irregular circular polygons as well as the entire range of regular <span class="math inline">\(n\)</span> sided polygons with <span class="math inline">\(n\)</span> greater than 2.</p>
 <hr />
 </div>
-<div id="here-are-the-functions-for-determining-if-points-are-in-or-out-of-a-given-polygon" class="section level2">
-<h2>Here are the functions for determining if points are in or out of a given polygon:</h2>
+<div id="here-are-the-functions-for-determining-if-points-are-in-or-out-of-a-given-polygon" class="section level3">
+<h3>Here are the functions for determining if points are in or out of a given polygon:</h3>
 </div>
-<div id="function-1" class="section level2">
-<h2>function 1</h2>
+<div id="function-1" class="section level3">
+<h3>function 1</h3>
 <pre class="r"><code>point_in_out &lt;- function(x_1, y_1, x, y, type, plot){
   xo &lt;- x
   yo &lt;- y
@@ -414,11 +403,10 @@ $(document).ready(function () {
 <p>Now that we have the <span class="math inline">\(test\)</span> vector of Boolean responses we use another iteration loop to find the indexing of all the <span class="math inline">\(FALSE\)</span> values in the vector and then manipulate both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values which correspond to this indexing to an extreme value far outside of the polygons area. <span class="math inline">\(floor(max(x_1)+500)\)</span> is extreme enough as it takes in to account the size of the polygons max <span class="math inline">\(x\)</span> coordinate.</p>
 <p>Because this is all contained within the iteration loop defined earlier, all the points will be tested the same number of times as the number of vertices the polygon has. Each iteration will refine the list of coordinates, which are within the polygon until finally we have <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> being all the coordinates in the polygon with all the points that were out equal to <span class="math inline">\(floor(max(x_1)+500)\)</span> and <span class="math inline">\(floor(max(y_1)+500)\)</span> respectively. Making use of a method of removing values from a vector based upon a specific value, we define <span class="math inline">\(x2\)</span> and <span class="math inline">\(y2\)</span> as new vectors which only contain the points which are in the polygon.</p>
 <p>At the end of the function, housekeeping is done, which relates to plotting and find the area of the poly gone. If, as we stated at the beginning of the function and <span class="math inline">\(plot = 1\)</span> then on top of the already plotted points in red we plot directly on top the values for <span class="math inline">\(x2\)</span> and <span class="math inline">\(y2\)</span> in black to represent the points in the polygon as well as plotting the polygon using the polygon function.</p>
-<p>I will come back on to the area section of this function later once I have described the other functions.</p>
 <hr />
 </div>
-<div id="function-2" class="section level2">
-<h2>function 2</h2>
+<div id="function-2" class="section level3">
+<h3>function 2</h3>
 <pre class="r"><code>#Area calculated from the determinant
 area_calculator &lt;- function(x,y){ #function takes in two vectors for x,y parts of coordinates
   l &lt;- length(x) #find number of coordinates
@@ -442,8 +430,8 @@ area_calculator &lt;- function(x,y){ #function takes in two vectors for x,y part
 <p>We realized that when the counter gets to the last line of the matrix <span class="math inline">\(m\)</span> it will need to use the first line again, so we inserted an if statement around the calculation of the determinant to check for <span class="math inline">\(i\)</span> equaling <span class="math inline">\(l\)</span>. If this condition is satisfied then as you would expect the last line of matrix <span class="math inline">\(m[l,]\)</span> and the first <span class="math inline">\(m[1,]\)</span> are used. Finally, to find the whole area we multiply the sum of these by 0.5 as per the equation.</p>
 <hr />
 </div>
-<div id="function-3" class="section level2">
-<h2>function 3</h2>
+<div id="function-3" class="section level3">
+<h3>function 3</h3>
 <pre class="r"><code>#Basic test with manually entered coordinates for polygon vertices with a known area.
 x_1 &lt;- c(25, 16, 4, 0, 4, 16) #x coordinates for vertices
 y_1 &lt;- c(6, 18, 18, 12,0, 0) #y coordinates for vertices
@@ -459,8 +447,8 @@ point_in_out(x_1,y_1,test.points.x,test.points.y,type = 0, plot = 1) #recalls th
 <div id="part-2" class="section level1">
 <h1>Part 2</h1>
 <p>For the second part of the initial tasks, we were asked to calculate the area of a given convex polygon using the Monte Carlo method. The Monte Carlo method is a way of calculating the area of a shape by generating <span class="math inline">\(n\)</span> random points and then testing which points lie within the shape you’re trying to find the area of. The approximate area is given by the area of the shape the points are generated in <span class="math inline">\((m)\)</span>, the number of points in the shape <span class="math inline">\((k)\)</span>, the number of points generated<span class="math inline">\((n)\)</span>, <span class="math inline">\(\frac{mk}{n}\)</span>. Obviously, the approximation becomes closer and closer to the actual area of the shape as <span class="math inline">\(n\)</span> approaches infinity. Which is why this is only an approximation as infinity is not a finite number of points that can be generated.</p>
-<div id="function-4" class="section level2">
-<h2>function 4</h2>
+<div id="function-4" class="section level3">
+<h3>function 4</h3>
 <pre class="r"><code>x_1 &lt;- c(25, 16, 4, 0, 4, 16) #x coordinates for vertices
 y_1 &lt;- c(6, 18, 18, 12,0, 0) #y coordinates for vertices
 no.points &lt;- 10000 #number of test points to generate  and determine if in or outside the polygon.
@@ -474,29 +462,29 @@ for(i in 1:repetitions){# retpeats monte carlo method 10 times and finds an aver
 }
 point_in_out(x_1,y_1,monte.carlo.points.x,monte.carlo.points.y, &quot;Monte&quot;, plot = 1) #monte carlo proccess</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre><code>## [1] 333.396</code></pre>
+<pre><code>## [1] 327.32</code></pre>
 <p>To do this we used the same bit of code as before but use different test points. We first start by defining the polygon vertices like before, as well as defining variables like <span class="math inline">\(no.points\)</span> as the number of points to randomly generate in the plane. Because the points in the Monte Carlo method are randomly generated we decided that it was more accurate to repeat the method a number of times and then find the average of all the different areas calculated, which lead us to define the variables <span class="math inline">\(areas\)</span> and <span class="math inline">\(repetition\)</span>. Using iteration from one to <span class="math inline">\(repetition\)</span> we generated vectors <span class="math inline">\(monte.carlo.points.x\)</span> and <span class="math inline">\(monte.carlo.points.y\)</span> using the <span class="math inline">\(runif()\)</span> function for each to generate <span class="math inline">\(no.points\)</span> random numbers in the interval defined by the maximum and minimum of the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates of the polygon. These points are then used for the test values in the <span class="math inline">\(point\)</span>_ <span class="math inline">\(in\)</span>_ <span class="math inline">\(out\)</span> function and the output area is then appended to the end of the <span class="math inline">\(areas\)</span> vector. The outputted area of this function is determined depending on what we put for the <span class="math inline">\(type\)</span> parameter. For the Monte Carlo method we set <span class="math inline">\(type = &quot;Monte&quot;\)</span>. In the <span class="math inline">\(point\)</span>_ <span class="math inline">\(in\)</span>_ <span class="math inline">\(out\)</span> function this is picked up on and the area is calculated using the “Monte” method, defined in the function.</p>
 </div>
-<div id="function-5" class="section level2">
-<h2>function 5</h2>
+<div id="function-5" class="section level3">
+<h3>function 5</h3>
 <pre class="r"><code>mean(areas[-1])</code></pre>
-<pre><code>## [1] 331.4099</code></pre>
+<pre><code>## [1] 331.24</code></pre>
 <pre class="r"><code>area_calculator(x_1,y_1) #calculates area using determinant process.</code></pre>
 <pre><code>## [1] 333</code></pre>
 <p>As you can see when comparing the mean area calculated using Monte Carlo method and the actual area calculated using the determinant process from before that the difference between the two are extremely small. We believe that this approximation area could be improved if we increased the number of test points and if we increase the number of repetitions used to calculate the mean area.</p>
 </div>
-<div id="function-6" class="section level2">
-<h2>function 6</h2>
+<div id="function-6" class="section level3">
+<h3>function 6</h3>
 <pre class="r"><code>var(areas[-1])</code></pre>
-<pre><code>## [1] 18.87387</code></pre>
+<pre><code>## [1] 35.61712</code></pre>
 <pre class="r"><code>sd(areas[-1])</code></pre>
-<pre><code>## [1] 4.344407</code></pre>
+<pre><code>## [1] 5.968008</code></pre>
 <p>A nice extra we have included is the variance and standard deviation of the areas calculated in the repetition process which shows approximately how close from the mean on average the areas calculated using the Monte Carlo were with these parameters. If we change the mean here to the actual area of the shape and not the mean approximate area, we can calculate the standard deviation to be <span class="math inline">\(\sigma^2 = \frac{\sum_{i=1}^{n}(x_i - \mu)^2}{n}\)</span>. Where <span class="math inline">\(\mu\)</span> is the actual area of the polygon and <span class="math inline">\(n\)</span> is <span class="math inline">\(repetitions\)</span>.</p>
 </div>
-<div id="function-7" class="section level2">
-<h2>function 7</h2>
+<div id="function-7" class="section level3">
+<h3>function 7</h3>
 <pre class="r"><code>sqrt(sum((areas[-1]-area_calculator(x_1,y_1))^2)/repetitions)</code></pre>
-<pre><code>## [1] 4.488222</code></pre>
+<pre><code>## [1] 6.028287</code></pre>
 </div>
 </div>
 

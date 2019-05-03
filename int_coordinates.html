@@ -11,7 +11,7 @@
 
 
 
-<title>Extension</title>
+<title>Integer Coordinates</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -311,12 +311,87 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Extension</h1>
+<h1 class="title toc-ignore">Integer Coordinates</h1>
 
 </div>
 
 
-<p>a</p>
+<p>Polygons with integer coordinates can be represented using Pick’s Theorem: <span class="math display">\[ A = i + b/2 -1 \]</span></p>
+<p>With number <span class="math inline">\(i\)</span> of lattice points in the interior and number <span class="math inline">\(b\)</span> of lattice points on the edges of the polygon.</p>
+<div class="clearfix">
+<div class="image">
+<div class="figure">
+<img src="images/reg_polygon_circle.png" />
+
+</div>
+</div>
+<p><br><br> When coding the function for finding the vertices of a regular circular polygon, we first thought about how we would generate the coordinates and looked in to polar coordinates. Knowing this we could easy calculate the angle step by <span class="math inline">\(2\pi/vertices\)</span> as well as entering a real number for the radius. Knowing this we defined the function <span class="math inline">\(vertex\)</span>_<span class="math inline">\(finder\)</span> with the requirements of needing a natural number input for the number of vertices and a real number for the radius. This is just simple conversion to polar coordinates with <span class="math inline">\(x = cos(angle)*radius\)</span> and <span class="math inline">\(y = sin(angle)*radius\)</span> where the angle is incremented by the angle step.</p>
+</div>
+<div class='clearfix'>
+<div class="small-img">
+<div class="figure">
+<img src="images/pick-theorem.png" />
+
+</div>
+<p><br><br> In the example polygon opposite there are 7 interior lattice points (shown in red) and 8 boundary points (shown in green). Using the equation above with <span class="math inline">\(i=7\)</span>, <span class="math inline">\(b=8\)</span> we get <span class="math inline">\(A = 7 + 8/2 âˆ’ 1 = 7 + 4 âˆ’ 1 = 10\)</span> <span class="math inline">\(A=7+8/2-1=7+4=10\)</span></p>
+</div>
+<p><br><br></p>
+<p>This can be proved using the function created in the individual project:</p>
+<pre class="r"><code>a &lt;- c(2,3,4,5,5,5,3,1)
+b &lt;- c(1,2,3,4,5,6,5,4)
+detvec &lt;- c() #an empty vector to store sum calculations for every i 
+#so mistakes can be easily seen
+area &lt;- function(x,y, graph=0, colour=&quot;orange&quot;) {
+  for(i in 1:(length(x)-1)){ #avoiding the last co-ordinate pair
+    det &lt;- x[i]*y[i+1]-x[i+1]*y[i] #calculating the determinant
+    detvec &lt;- append(detvec, det)
+  }
+  i &lt;- length(x) #the final calculation with x[i+1]=x[1]
+  det &lt;- x[i]*y[1]-x[1]*y[i]
+  detvec &lt;- append(detvec, det)
+  
+  if(graph != 0){
+    x_range &lt;- range(0, x)
+    y_range &lt;- range(0, y)
+    plot(x_range, y_range, type=&#39;n&#39;)
+    polygon(x,y,col=colour)
+  }
+  
+  detvec
+  abs(sum(0.5*detvec))#Using &#39;abs&#39; to return a positive number
+}
+area(a,b, 0)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<p>So the area is 10 as found using Pick’s Theorem, which is clearly simpler.</p>
+<p>This theorem, much like the function in the individual project does not work for polygons with holes. For a polygon with <span class="math inline">\(h\)</span> holes and a boundary of <span class="math inline">\(h+1\)</span> simple closed curves, there is another formula for the area: <span class="math display">\[i + b/2 + h-1\]</span></p>
+<p>For example, the non simple polygon (below) with outer vertices <span class="math inline">\((0,3),(6,3),(6,9),(0,9)\)</span> and inner vertices $ (l= c(3,3,9,9))1,5),(3,8),(5,5),(1,5)$ would have an area of $ 15 + 30/2 +1-1=30$.</p>
+<pre class="r"><code>c = c(1,3,5,1)
+d=c(5,8,5,5) #triangle
+
+k= c(0,6,6,0)
+l= c(3,3,9,9)
+
+plot(c(0,20), c(0,10), type=&#39;n&#39;,xlab=&quot;x&quot;,ylab=&quot;y&quot;,main=&quot;A polygon with a hole&quot;, xaxs=&quot;i&quot;, yaxs=&quot;i&quot;)
+grid(20, 10, col = &quot;lightgray&quot;, lty = &quot;dotted&quot;,
+     lwd = par(&quot;lwd&quot;), equilogs = TRUE)
+polygon(k,l,col=&quot;blue&quot;)
+polygon(c,d,col=&quot;white&quot;) </code></pre>
+<p><img src="int_coordinates_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>This too can be checked using another function from the individual project:</p>
+<pre class="r"><code>holes &lt;- function(x,y,s,t){
+  area &lt;- area(x,y)-area(s,t)
+  area
+}</code></pre>
+<p>So the area of the blue hole polygon is 30.</p>
+<p>Interestingly, the only regular polygon that can be constructed with integer coordinates is the square. Infinitely many irregular polygons can be constructed, but only regular squares. The proof of this is too long but can be found <a href="https://www.quora.com/Can-regular-polygons-other-than-squares-have-integer-coordinates-on-Cartesian-plane">here.</a></p>
+<div id="bibliography" class="section level3">
+<h3>Bibliography</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Pick&#39;s_theorem" class="uri">https://en.wikipedia.org/wiki/Pick's_theorem</a></li>
+<li><a href="https://math.stackexchange.com/questions/960686/properties-of-area-of-simple-polygon-with-integer-coordinates" class="uri">https://math.stackexchange.com/questions/960686/properties-of-area-of-simple-polygon-with-integer-coordinates</a></li>
+<li><a href="https://www.quora.com/Can-regular-polygons-other-than-squares-have-integer-coordinates-on-Cartesian-plane" class="uri">https://www.quora.com/Can-regular-polygons-other-than-squares-have-integer-coordinates-on-Cartesian-plane</a></li>
+</ul>
+</div>
 
 
 

@@ -1,0 +1,24 @@
+---
+title: "Level Sets"
+author: "M J Saward"
+date: "03/05/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Considering the area of shapes that aren't standard polygons is difficult. We would consider this to be a problem of applications to Mathematics, when modelling scenarios that create plots that are not polygonal. This is where we look at level sets - a topic in multivariate functions. In two-dimensions, this creates a plane curve (a level curve), or in three-dimensions it is a level surface. 
+
+![Image courtesy of J.A.Sethian, Berkley University, California](level_set_circle.jpg)
+
+Let's take the function $f:\mathbb{R}^2$ to $\mathbb{R}$, where $f(x,y)$ is the function $x^2 + y^2 = k$. This is instantly recognisable as the equation of a circle, where the radius of the circle is equal to $\sqrt k$. As you can see, this is represnted in the image above. And so what is the level sets approach? Well, we take the function, and get an output which is the radius squared ($k$). In some cases, this could be due to time dependent data or other similar variables. In the case of our function, we end of with a set of circles all with different radius length. We take each of these circles and as the image above illustrates, we form a three dimensional shape. Thus you will have likely noticed that if we were to examine the conic shape, and take a horizontal slice through it, we would get a plane - one of the circles. This is where we would want to calculate an area. 
+
+Of course, calculating the area of a circular plane is simple. We know a standard formula for calculating the area of a circle, involving pi, which we can prove using Monte Carlo methods, as discussed early. But what if we were mapping functions, or examining a three-dimensional plot which was not as straight-forward, such as the one below?
+
+![Image courtesy of http://www.programmersought.com/article/4770216579/](level_set_harder.png)
+
+This is a nice visualisation of taking slices through the graph, with the two-dimensional plane plotted above. With these, we can now use Monte Carlo methods, or indeed other numerical methods, to calculate the plane's area, by using a Monte Carlo simulation to integrate for the area under the curve of the plane. 
+Applications of these techniques are in areas such as waves, turbulence and combustion - naturally at a more complex level than the example. All these natural systems create plots involving curvature, where the functions can be mapped to a value in $\mathbb{R}$. 
