@@ -336,7 +336,7 @@ $(document).ready(function () {
 <p>Properties 1. and 2. are very general. Area can not be negative as this is impossible. Area is also definitely additive as this property has been used multiple times in working out the area of complex irregular polygons by breaking up a larger complex shape into smaller simpler shapes and summing the area of the smaller shapes and form the basis for formulas of finding areas of shapes for example The area of a regular polygon using the apothem. The formula for the area of regular polygon is <span class="math display">\[a = \frac{1}{2}pd\]</span> where <span class="math inline">\(p\)</span> is the perimeter and <span class="math inline">\(d\)</span> is the apothem.</p>
 <p>This formula originates from splitting the polygon into <span class="math inline">\(n\)</span> congruent triangles, as shown in Figure 4. Then calculating the area of one of the triangles using the usual formula <span class="math inline">\(a_T = \frac{1}{2}bh\)</span>, here <span class="math inline">\(h\)</span> is the same as the apothem and <span class="math inline">\(b\)</span> is the same as the length of a side. Then the area is the sum of all the triangles which is worked out by multiplying by the amount of congruent triangles <span class="math inline">\(n\)</span>. This gives <span class="math display">\[a = \frac{1}{2}nsd.\]</span> Doing the number of sides multiplied by the length of the side is the same as finding the perimeter of the shape, so substituting <span class="math inline">\(p = ns\)</span> gives <span class="math display">\[a = \frac{1}{2}pd.\]</span></p>
 <div class="figure">
-<img src="images/proof.png" />
+<img src="proof.png" />
 
 </div>
 <p>Property 3. must be true as translations only affect the position of the shape and does not alter the size of the shape in any way and therefore should not have any affect on the area. This property is consistent with a property of determinants, as adding a constant to a matrix does not have any effect on the determinant of the matrix.</p>
@@ -345,24 +345,24 @@ $(document).ready(function () {
 <div id="properties-of-the-area-of-a-parallelogram" class="section level1">
 <h1>Properties of the area of a parallelogram</h1>
 <div class="figure">
-<img src="images/Figure1.png" alt="Figure 1: P(a,b)" />
+<img src="Figure1.png" alt="Figure 1: P(a,b)" />
 <p class="caption">Figure 1: <span class="math inline">\(P\)</span>(<strong><span class="math inline">\(a\)</span></strong>,<strong><span class="math inline">\(b\)</span></strong>)</p>
 </div>
 <p>Take a parallelogram (<span class="math inline">\(P\)</span>) with sides of <strong><span class="math inline">\(a\)</span></strong> and <strong><span class="math inline">\(b\)</span></strong> <span class="math inline">\(P\)</span>(<strong><span class="math inline">\(a\)</span></strong>,<strong><span class="math inline">\(b\)</span></strong>) as shown in Figure 1. Let the area of the parallelogram be a function of <strong><span class="math inline">\(a\)</span></strong> and <strong><span class="math inline">\(b\)</span></strong>, area of <span class="math inline">\(P\)</span>(<strong><span class="math inline">\(a\)</span></strong>,<strong><span class="math inline">\(b\)</span></strong>).</p>
 <div class="clearfix">
 <div class="img-container">
-<img src="images/Figure2.png" alt="Figure 2: P(na,b)" />
+<img src="Figure2.png" alt="Figure 2: P(na,b)" />
 </div>
 <div class="img-container">
-<img src="images/Figure3.png" alt="Figure 3: P(a,nb)" />
+<img src="Figure3.png" alt="Figure 3: P(a,nb)" />
 </div>
 </div>
 <p>We can see that in Figures 2 and 3 when one of the sides is multiplied by a constant <span class="math inline">\(n\)</span> the parallelogram just gets <span class="math inline">\(n\)</span> amount of parallelograms attached on the end. So by the additvity property 2. the area of the parallelogram is just multiplied by <span class="math inline">\(n\)</span>. Therefore, the area of <span class="math inline">\(P\)</span>(<span class="math inline">\(n\)</span><strong><span class="math inline">\(a\)</span></strong>,<strong><span class="math inline">\(b\)</span></strong>) = the area of <span class="math inline">\(P\)</span>(<strong><span class="math inline">\(a\)</span></strong>,<span class="math inline">\(n\)</span><strong><span class="math inline">\(b\)</span></strong>) = <span class="math inline">\(|n|\)</span><span class="math inline">\(P\)</span>(<strong><span class="math inline">\(a\)</span></strong>,<strong><span class="math inline">\(b\)</span></strong>), where <span class="math inline">\(n\)</span> is an constant. This coincides with the property of determinants in which scaling a row or column of a matrix by a <span class="math inline">\(n\)</span> causes the determinant to be multiplied by <span class="math inline">\(n\)</span>: <span class="math display">\[\begin{vmatrix}a_1 + nb_1&amp;b_1\\a_2 + nb_2&amp;b_2\end{vmatrix} =  \begin{vmatrix}a_1&amp;b_1\\a_2&amp;b_2\end{vmatrix}.\]</span></p>
 <div class="figure">
-<img src="images/Figure4.png" alt="Figure 4: P(a,b+ ka)" />
+<img src="Figure4.png" alt="Figure 4: P(a,b+ ka)" />
 <p class="caption">Figure 4: <span class="math inline">\(P\)</span>(<strong><span class="math inline">\(a\)</span></strong>,<strong><span class="math inline">\(b\)</span></strong><span class="math inline">\(+ k\)</span><strong><span class="math inline">\(a\)</span></strong>)</p>
 </div>
-<p>. <img src="images/Figure5.png" alt="Figure 5: P(a+ kb,b)" /></p>
+<p>. <img src="Figure5.png" alt="Figure 5: P(a+ kb,b)" /></p>
 <p>In Figures 4 and 5, we can see that the two yellow areas are equal and the two pink areas are equal. This shows is that if we add a multiple of a side to the other side the area just remains the same. Thus, the area of <span class="math inline">\(P\)</span>(<strong><span class="math inline">\(a\)</span></strong>,<strong><span class="math inline">\(b\)</span></strong><span class="math inline">\(+ n\)</span><strong><span class="math inline">\(a\)</span></strong>) = the area of <span class="math inline">\(P\)</span>(<strong><span class="math inline">\(a\)</span></strong><span class="math inline">\(+ n\)</span><strong><span class="math inline">\(b\)</span></strong>,<strong><span class="math inline">\(b\)</span></strong>) = <span class="math inline">\(P\)</span>(<strong><span class="math inline">\(a\)</span></strong>,<strong><span class="math inline">\(b\)</span></strong>), where <span class="math inline">\(n\)</span> is a constant. This follows with the property of determinants in which when the elements of any row (or column) being multiplied by a <span class="math inline">\(n\)</span> (a constant) are added to the corresponding elements of the other row (or column), then the determinant is unchanged: <span class="math display">\[\begin{vmatrix}na_1&amp;nb_1\\a_2&amp;b_2\end{vmatrix} = \begin{vmatrix}na_1&amp;b_1\\na_2&amp;b_2\end{vmatrix} = k \begin{vmatrix}a_1&amp;b_1\\a_2&amp;b_2\end{vmatrix}.\]</span></p>
 </div>
 <div id="bibliography" class="section level1">

@@ -462,13 +462,13 @@ for(i in 1:repetitions){# retpeats monte carlo method 10 times and finds an aver
 }
 point_in_out(x_1,y_1,monte.carlo.points.x,monte.carlo.points.y, &quot;Monte&quot;, plot = 1) #monte carlo proccess</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre><code>## [1] 327.32</code></pre>
+<pre><code>## [1] 339.57</code></pre>
 <p>To do this we used the same bit of code as before but use different test points. We first start by defining the polygon vertices like before, as well as defining variables like <span class="math inline">\(no.points\)</span> as the number of points to randomly generate in the plane. Because the points in the Monte Carlo method are randomly generated we decided that it was more accurate to repeat the method a number of times and then find the average of all the different areas calculated, which lead us to define the variables <span class="math inline">\(areas\)</span> and <span class="math inline">\(repetition\)</span>. Using iteration from one to <span class="math inline">\(repetition\)</span> we generated vectors <span class="math inline">\(monte.carlo.points.x\)</span> and <span class="math inline">\(monte.carlo.points.y\)</span> using the <span class="math inline">\(runif()\)</span> function for each to generate <span class="math inline">\(no.points\)</span> random numbers in the interval defined by the maximum and minimum of the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates of the polygon. These points are then used for the test values in the <span class="math inline">\(point\)</span>_ <span class="math inline">\(in\)</span>_ <span class="math inline">\(out\)</span> function and the output area is then appended to the end of the <span class="math inline">\(areas\)</span> vector. The outputted area of this function is determined depending on what we put for the <span class="math inline">\(type\)</span> parameter. For the Monte Carlo method we set <span class="math inline">\(type = &quot;Monte&quot;\)</span>. In the <span class="math inline">\(point\)</span>_ <span class="math inline">\(in\)</span>_ <span class="math inline">\(out\)</span> function this is picked up on and the area is calculated using the “Monte” method, defined in the function.</p>
 </div>
 <div id="function-5" class="section level3">
 <h3>function 5</h3>
 <pre class="r"><code>mean(areas[-1])</code></pre>
-<pre><code>## [1] 331.24</code></pre>
+<pre><code>## [1] 330.8088</code></pre>
 <pre class="r"><code>area_calculator(x_1,y_1) #calculates area using determinant process.</code></pre>
 <pre><code>## [1] 333</code></pre>
 <p>As you can see when comparing the mean area calculated using Monte Carlo method and the actual area calculated using the determinant process from before that the difference between the two are extremely small. We believe that this approximation area could be improved if we increased the number of test points and if we increase the number of repetitions used to calculate the mean area.</p>
@@ -476,15 +476,15 @@ point_in_out(x_1,y_1,monte.carlo.points.x,monte.carlo.points.y, &quot;Monte&quot
 <div id="function-6" class="section level3">
 <h3>function 6</h3>
 <pre class="r"><code>var(areas[-1])</code></pre>
-<pre><code>## [1] 35.61712</code></pre>
+<pre><code>## [1] 26.59732</code></pre>
 <pre class="r"><code>sd(areas[-1])</code></pre>
-<pre><code>## [1] 5.968008</code></pre>
+<pre><code>## [1] 5.157259</code></pre>
 <p>A nice extra we have included is the variance and standard deviation of the areas calculated in the repetition process which shows approximately how close from the mean on average the areas calculated using the Monte Carlo were with these parameters. If we change the mean here to the actual area of the shape and not the mean approximate area, we can calculate the standard deviation to be <span class="math inline">\(\sigma^2 = \frac{\sum_{i=1}^{n}(x_i - \mu)^2}{n}\)</span>. Where <span class="math inline">\(\mu\)</span> is the actual area of the polygon and <span class="math inline">\(n\)</span> is <span class="math inline">\(repetitions\)</span>.</p>
 </div>
 <div id="function-7" class="section level3">
 <h3>function 7</h3>
 <pre class="r"><code>sqrt(sum((areas[-1]-area_calculator(x_1,y_1))^2)/repetitions)</code></pre>
-<pre><code>## [1] 6.028287</code></pre>
+<pre><code>## [1] 5.442933</code></pre>
 </div>
 </div>
 

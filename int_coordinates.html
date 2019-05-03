@@ -318,23 +318,11 @@ $(document).ready(function () {
 
 <p>Polygons with integer coordinates can be represented using Pick’s Theorem: <span class="math display">\[ A = i + b/2 -1 \]</span></p>
 <p>With number <span class="math inline">\(i\)</span> of lattice points in the interior and number <span class="math inline">\(b\)</span> of lattice points on the edges of the polygon.</p>
-<div class="clearfix">
-<div class="image">
 <div class="figure">
-<img src="images/reg_polygon_circle.png" />
+<img src="pick-theorem.png" />
 
 </div>
-</div>
-<p><br><br> When coding the function for finding the vertices of a regular circular polygon, we first thought about how we would generate the coordinates and looked in to polar coordinates. Knowing this we could easy calculate the angle step by <span class="math inline">\(2\pi/vertices\)</span> as well as entering a real number for the radius. Knowing this we defined the function <span class="math inline">\(vertex\)</span>_<span class="math inline">\(finder\)</span> with the requirements of needing a natural number input for the number of vertices and a real number for the radius. This is just simple conversion to polar coordinates with <span class="math inline">\(x = cos(angle)*radius\)</span> and <span class="math inline">\(y = sin(angle)*radius\)</span> where the angle is incremented by the angle step.</p>
-</div>
-<div class='clearfix'>
-<div class="small-img">
-<div class="figure">
-<img src="images/pick-theorem.png" />
-
-</div>
-<p><br><br> In the example polygon opposite there are 7 interior lattice points (shown in red) and 8 boundary points (shown in green). Using the equation above with <span class="math inline">\(i=7\)</span>, <span class="math inline">\(b=8\)</span> we get <span class="math inline">\(A = 7 + 8/2 âˆ’ 1 = 7 + 4 âˆ’ 1 = 10\)</span> <span class="math inline">\(A=7+8/2-1=7+4=10\)</span></p>
-</div>
+<p><br><br> In the example polygon above there are 7 interior lattice points (shown in red) and 8 boundary points (shown in green). Using the equation above with <span class="math inline">\(i=7\)</span>, <span class="math inline">\(b=8\)</span> we get <span class="math inline">\(A = 7 + 8/2 âˆ’ 1 = 7 + 4 âˆ’ 1 = 10\)</span> <span class="math inline">\(A=7+8/2-1=7+4=10\)</span></p>
 <p><br><br></p>
 <p>This can be proved using the function created in the individual project:</p>
 <pre class="r"><code>a &lt;- c(2,3,4,5,5,5,3,1)
