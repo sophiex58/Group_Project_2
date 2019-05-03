@@ -12,8 +12,7 @@ With number $i$ of lattice points in the interior and number $b$ of lattice poin
  ![](pick-theorem.png)
 
 <br><br>
-In the example polygon above there are 7 interior lattice points (shown in red) and 8 boundary points (shown in green). Using the equation above with $i=7$, $b=8$ we get  $A = 7 + 8/2 − 1 = 7 + 4 − 1 = 10$
-$A=7+8/2-1=7+4=10$
+In the example polygon above there are 7 interior lattice points (shown in red) and 8 boundary points (shown in green). Using the equation above with $i=7$, $b=8$ we get $A=7+8/2-1=7+4=10$
 
 
 <br><br>
